@@ -7,7 +7,7 @@
 
     <!-- versionCode is optional and Android only -->
 	<gap:platform name="android" />
-    <name>Siemak Mobile</name>
+    <name>Siemak Mobile Dosen</name>
 
     <description>
        Aplikasi SIEMAK Untuk Dosen
