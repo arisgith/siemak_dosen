@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<!--  Scripts-->
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/materialize.js"></script>
+		<script src="js/init.js"></script>
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script>
+			function validationcheck(){
+				if ($("#username").val() == "") {
+
+					alert("Mohon Masukan NIP.");
+
+					$("#username").focus(); 
+					return false;
+
+				}
+				
+				else if ($("#pass").val() == "") {
+
+					alert("Mohon Masukan Password.");
+
+					$("#pass").focus();
+					return false;
+				}
+			}
+		</script>
+		<script>
+			function onBackKeyDown2() {
+				 navigator.app.exitApp();
+			}
+			function toast(){
+				Materialize.toast('Anda Ingin Keluar? <a onclick="onBackKeyDown2()" class="btn red">Ya</a>', 4000)
+			}
+			// Wait for device API libraries to load
+			//
+			function onLoad() {
+				document.addEventListener("deviceready", onDeviceReady, false);
+			}
+
+			// device APIs are available
+			//
+			function onDeviceReady() {
+				// Register the event listener
+				document.addEventListener("backbutton", onBackKeyDown, false);
+			}
+			// Handle the back button
+			function onBackKeyDown() {
+				 toast();
+				 //navigator.app.exitApp();
+			}
+			
+		</script>
+		
+	</head>
+
+	<body onload="onLoad()">
+		<nav class="lime darken-4 lighten-1" role="navigation">
+			<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Login</a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="#">Navbar Link</a></li>
+				</ul>
+			
+				<ul id="nav-mobile" class="side-nav">
+					<li>
+						<span class="blue-text text-darken-2">
+							<h4>Info Aplikasi !</h4>
+						</span>
+						<span class="black-text text-darken-2">
+							<p >Versi SIEMAK Android 0.1b</p>
+							<small style="text-align:justify;">
+								<p class="flow-text">
+									Aplikasi SIEMAK Android 0.1b ini digunakan untuk memudahkan mahasiswa untuk melakukan penilaian terhadap
+									kinerja dosen saat melakukan kegiatan akademik yang bertempat di kelas.
+								
+									Aplikasi ini juga terintegrasi dengan data Siakad Trunojoyo sehingga memudahkan mahasiswa dengan sistem single sign in.
+									Untuk mahasiswa, 
+									silahkan login menggunakan <b>NRP</b> sebagai username dan <b>password siakad</b> sebagai password
+								</p>
+								<p>
+									Info developer : <a href="http://siemak.web.id" target="_blank">KLIK</a> 
+								</p>
+							</small>
+						</span>
+					</li>
+				</ul>
+				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+			</div>
+		</nav>
+		
+		<div class="container">
+			<div class="row">
+				<h1 class="header center orange-text">SI Jamu</h1>
+				<form class="col s12" action="home.html" method="get" onsubmit="return validationcheck()">
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="mdi-action-account-circle prefix"></i>
+							<input id="username" name="username" pattern=".{12,}" type="text" class="validate">
+							<label for="first_name">NIP</label>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="mdi-editor-mode-edit prefix"></i>
+							<input id="pass" name="pass" type="password" class="validate">
+							<label for="password">Password</label>
+						</div>
+					</div>
+					<div class="row center">
+						 <button class="btn waves-effect waves-light lime darken-4" type="submit" name="action" onclick="return validationcheck()">
+							 Submit<i class="mdi-content-send right"></i>
+						 </button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<footer class="page-footer lime darken-4 lighten-1">
+			<div class="footer-copyright lime darken-4 lighten-1">
+				<div class="container center-align">
+					&copy; 2015 JAMU Teknik Informatika Trunojoyo Madura
+				</div>
+			</div>
+		</footer>
+		<script>
+			//disable back button
+			if (typeof history.pushState === "function") {
+				history.pushState("jibberish", null, null);
+				var page_loaded = false;
+				window.onpopstate = function () {
+					if(!page_loaded){
+						page_loaded = true;
+						return false;
+					}
+					history.pushState('newjibberish', null, null);
+					// Handle the back (or forward) buttons here
+					// Will NOT handle refresh, use onbeforeunload for this.
+					toast();
+				};
+			}
+			else {
+				var ignoreHashChange = true;
+				window.onhashchange = function () {
+					if (!ignoreHashChange) {
+						ignoreHashChange = true;
+						window.location.hash = Math.random();
+						// Detect and redirect change here
+						// Works in older FF and IE9
+						// * it does mess with your hash symbol (anchor?) pound sign
+						// delimiter on the end of the URL
+					}
+					else {
+						ignoreHashChange = false;   
+					}
+				};
+			}	
+		</script>
+	</body>
+</html>
