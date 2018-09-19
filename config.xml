@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<preference name='phonegap-version' value='cli-8.0.0' />
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "id.web.siemak.dosen"
@@ -19,3 +18,4 @@
     </author>
 	<icon src="logo-utm.png"/>
 </widget>
+<preference name='phonegap-version' value='cli-8.0.0' />
